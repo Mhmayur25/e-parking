@@ -1,0 +1,63 @@
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h5 class="modal-title">Parking Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+          <form class="form" name="form">
+            <div class="row">
+              <div class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
+                <div class="form-group">
+                  <label for="vehical_no">Vehical No.:</label>
+                  <input type="text" class="form-control form-control-sm text-uppercase" ng-model="customerDetails.vehical_no" id="vehical_no" name="vehical_no">
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
+                <div class="form-group">
+                  <label for="vehical_type">Vehical Type:</label>
+                  <select class="form-select form-select-sm" id="vehical_type" name="vehical_type" ng-model="customerDetails.vehical_type" ng-options="_obj.vehicalType as _obj.vehicalType for _obj in parkingCapacity">
+                    <option value="" selected disabled>--Select--</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-12 col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                <div class="form-group">
+                  <label for="customer_name">Name:</label>
+                  <input type="text" class="form-control form-control-sm" ng-model="customerDetails.customer_name" id="customer_name" name="customer_name">
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
+                <div class="form-group">
+                  <label for="mobile">Mobile No.:</label>
+                  <input type="number" class="form-control form-control-sm" ng-model="customerDetails.mobile" id="mobile" name="mobile">
+                </div>
+              </div>
+             
+              <div class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
+                <div class="form-group">
+                  <label for="email">Email:</label>
+                  <input type="email" class="form-control form-control-sm" ng-model="customerDetails.email" id="email" name="email">
+                </div>
+              </div>
+             
+            </div>
+          </form>
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+            ng-click="saveCustomerDetails()">Save</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,79 @@
+
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h5 class="modal-title">User's Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+            <form class="form" name="form">
+                <div class="row">
+                <div class="col-12 col-md-6 col-lg-6">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" ng-model="userDetails.name" id="name"
+                    name="name" required>
+            </div>
+            </div>
+
+                <div class="col-12 col-md-6 col-lg-6">
+            <div class="form-group">
+                <label>Location:</label>
+                <select class="form-select" ng-model="userDetails.locationid" ng-options="_obj.id as _obj.location_name for _obj in CompanyLocations">
+                    <option value="" selected disabled>--Select--</option>
+                  </select>
+            </div>
+            </div>
+           
+            <div class="col-12 col-md-6 col-lg-6">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" ng-model="userDetails.email" id="email" name="email" required>
+            </div>
+            </div>
+
+          
+            <div class="col-12 col-md-6 col-lg-6">
+            <div class="form-group">
+                <label for="mibile">Mobile No.:</label>
+                <input type="number" class="form-control" ng-model="userDetails.mobile" id="mibile" name="mibile" required>
+            </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                <label>Approval:</label>
+            <div class="form-group">
+                <div class="form-check-inline">
+                    <input type="radio" class="form-check-input" id="rd-approve" name="approval" value="0" ng-click="userDetails.status = 0" ng-checked="userDetails.status == 0">
+                    <label class="form-check-label" for="rd-approve">Approved</label>
+                  </div>
+                <div class="form-check-inline">
+                    <input type="radio" class="form-check-input" id="rd-denied" name="approval" value="1" ng-click="userDetails.status = 1" ng-checked="userDetails.status == 1">
+                    <label class="form-check-label" for="rd-denied">Denied</label>
+                  </div>
+            </div>
+            </div>
+         
+
+           
+            </div>
+        
+        </form>
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            <button type="button" class="btn btn-success" data-bs-dismiss="modal" ng-disabled="form.$invalid"
+            ng-click="saveUserDetails()">Save</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>

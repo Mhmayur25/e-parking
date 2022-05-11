@@ -1,0 +1,23 @@
+<div ng-include="'/public/navabar.html'"></div>
+
+<div class="container-fluid my-5" ng-init="getCustomersList();getLocationParkingCapacity()">
+    <div class="row py-5">
+        <div class="col-12 mt-1 mb-2">
+            <button class="btn btn-primary btn-sm" ng-click="customerDetails = {}"  data-bs-toggle="modal" data-bs-target="#myModal">Add Customer</button>
+
+            <button class="btn btn-primary btn-sm" ng-if="selectedRecord.length == 1" data-bs-toggle="modal" ng-click="getCustomerDetails(selectedRecord[0])" data-bs-target="#myModal">Edit Customer</button>
+
+          <!--   <button class="btn btn-primary btn-sm" ng-if="selectedRecord.length > 0" ng-click="deleteCustomers()">Delete Customer</button> -->
+        </div>
+
+            <ln-table ng-if="CustomersList && CustomersList.length > 0" name="tableData" select-row="selectRow(data)"></ln-table>
+
+            <div class="container" ng-if="!CustomersList || CustomersList.length <= 0">
+            <div class="col-12 col-sm-12 text-center alert alert-warning">
+                No record found!
+              </div>
+            </div>
+    </div>
+</div>
+
+<div ng-include="'../../templates/customer-details.html'"></div>

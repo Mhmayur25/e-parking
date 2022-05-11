@@ -1,0 +1,48 @@
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+  <div class="container-fluid d-sm-none d-md-none d-lg-none d-xl-none d-xxl-none d-block">
+      <div class="col-12 col-sm-12 text-center text-light">
+        <h4>Logo</h4>
+      </div>
+    </div>
+  <div class="container-fluid">
+    
+    <button class="navbar-toggler ml-auto" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" ng-click="RedirectLink('/dashboard')" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar" > <i class="fa fa-home" aria-hidden="true">&nbsp; Home</i></a>
+        </li>
+        <li class="nav-item" ng-if="userDetails.role == 'Superadmin'">
+          <a class="nav-link"  ng-click="RedirectLink('/companies')" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar" > <i class="fa fa-building" aria-hidden="true">&nbsp; Company</i></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link"  ng-click="RedirectLink('/locations')" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar"><i class="fa fa-map" aria-hidden="true">&nbsp; Locations</i></a>
+          </li>    
+        <li class="nav-item">
+          <a class="nav-link"  ng-click="RedirectLink('/users')" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar" > <i class="fa fa-users" aria-hidden="true">&nbsp; Users</i>
+            </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"  ng-click="RedirectLink('/customers')" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar" > <i class="fa fa-users" aria-hidden="true">&nbsp; Customers</i>
+            </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link"  ng-click="RedirectLink('/subscriptions')" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar" > <i class="fa fa-ticket" aria-hidden="true">&nbsp; Customer's Subscription</i>
+            </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"  ng-click="RedirectLink('/parking')" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar" > <i class="fa fa-product-hunt" aria-hidden="true">&nbsp; Parking Allocation</i>
+            </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"  ng-click="RedirectLink('/profile')" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar" > <i class="fa fa-user-circle" aria-hidden="true">&nbsp; User Profile</i>
+            </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

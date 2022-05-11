@@ -1,0 +1,144 @@
+
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h5 class="modal-title">Company Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+            <form class="form" name="form">
+                <div class="row">
+                <div class="col-12">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" ng-model="CompanyDetails[0].name" id="name"
+                    name="Name" required>
+            </div>
+            </div>
+            <div class="col-12">
+            <div class="form-group">
+                <label for="owner">Owner Name:</label>
+                <input type="text" class="form-control" ng-model="CompanyDetails[0].owner" id="owner"
+                    name="owner" required>
+            </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-6">
+            <div class="form-group">
+                <label for="landline">Landline No.:</label>
+                <input type="number" class="form-control" ng-model="CompanyDetails[0].landline" id="landline"
+                    name="landline" ng-blur="VerifyCompanyContacts('landline1')" required>
+                    <label class="text-danger" ng-if="landlineexist">
+                        {{landlineexist}}
+                    </label>
+            </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label for="altlandline">Alt. Landline No.:</label>
+                    <input type="number" class="form-control" ng-model="CompanyDetails[0].altlandline" id="altlandline" ng-blur="VerifyCompanyContacts('landline2')"
+                        name="altlandline">
+                        <label class="text-danger" ng-if="landlineexist">
+                            {{landlineexist}}
+                        </label>
+                </div>
+                </div>
+            <div class="col-12 col-md-6 col-lg-6">
+            <div class="form-group">
+                <label for="mibile">Mobile No.:</label>
+                <input type="number" class="form-control" ng-model="CompanyDetails[0].mobile" id="mibile"
+                    name="mibile" ng-blur="VerifyCompanyContacts('mobile1')" required>
+                    <label class="text-danger" ng-if="mobileexist">
+                        {{mobileexist}}
+                    </label>
+            </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label for="altmobile">Alt. Mobile No.:</label>
+                    <input type="number" class="form-control" ng-model="CompanyDetails[0].altmobile" id="altmobile" ng-blur="VerifyCompanyContacts('mobile2')"
+                        name="altmobile">
+                        <label class="text-danger" ng-if="mobileexist">
+                            {{mobileexist}}
+                        </label>
+                </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" ng-model="CompanyDetails[0].email" id="email"
+                            name="email" ng-blur="VerifyCompanyContacts()" required>
+                            <label class="text-danger" ng-if="emailexist">
+                                {{emailexist}}
+                            </label>
+                    </div>
+                    </div>
+            
+            <div class="col-12 col-md-12 col-lg-12">
+            <div class="form-group">
+                <label for="website">Website:</label>
+                <input type="text" class="form-control" ng-model="CompanyDetails[0].website" id="website"
+                    name="website" required>
+            </div>
+            </div>
+            <div class="col-12">
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea class="form-control" ng-model="CompanyDetails[0].description" id="description"
+                    name="description"></textarea>
+            </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="form-group">
+                <label for="gstin">GSTIN:</label>
+              <input class="form-control" id="gstin" ng-model="CompanyDetails[0].gstin"/>
+            </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                <label>Approval:</label>
+            <div class="form-group">
+                <div class="form-check-inline">
+                    <input type="radio" class="form-check-input" id="rd-approve" name="approval" value="0" ng-checked="CompanyDetails[0].status == 0">
+                    <label class="form-check-label" for="rd-approve">Approved</label>
+                  </div>
+                <div class="form-check-inline">
+                    <input type="radio" class="form-check-input" id="rd-denied" name="approval" value="1" ng-click="SetCompanyApproval()" ng-checked="CompanyDetails[0].status == 1">
+                    <label class="form-check-label" for="rd-denied">Denied</label>
+                  </div>
+            </div>
+            </div>
+         <!--    <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                    <div class="form-group">
+                            <label for="type">image:</label>
+                            <input type="file" id="logoimg" ngf-select ng-model="logoimg" name="file"
+                                ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB"
+                                ngf-resize="{width: 100, height: 100}">
+                        </div>
+            </div> -->
+
+            <!-- <div class="col-12 mt-1">
+                   <a class="btn btn-secondary" ng-class="{'btn-success':CompanyDetails[0].status == 0 , 'btn-danger':CompanyDetails[0].status == 1}" ng-click="SetCompanyApproval()">{{btnlbl}}</a>
+            </div> -->
+            </div>
+        
+        </form>
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            <button type="button" class="btn btn-success" data-bs-dismiss="modal" ng-disabled="form.$invalid || (emailexist || mobileexist || landlineexist)"
+            ng-click="SaveCompanyDetails()">Save</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>

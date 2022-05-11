@@ -1,0 +1,19 @@
+<div ng-include="'/public/navabar.html'"></div>
+
+<div class="container-fluid my-5" ng-init="getCompanyList()">
+    <div class="row py-5">
+        <div class="col-12 mt-1 mb-2">
+            <button class="btn btn-primary btn-sm"  data-bs-toggle="modal" data-bs-target="#myModal">Add Company</button>
+        </div>
+
+            <ln-table ng-if="CompanysList && CompanysList.length > 0" name="tableData" check-table-data="checkSelectedRows"></ln-table>
+
+            <div class="container" ng-if="!CompanysList || CompanysList.length <= 0">
+            <div class="col-12 col-sm-12 text-center alert alert-warning">
+                No record found!
+              </div>
+            </div>
+    </div>
+</div>
+
+<div ng-include="'../../templates/company-details.html'"></div>

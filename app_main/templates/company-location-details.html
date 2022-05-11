@@ -1,0 +1,154 @@
+
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h5 class="modal-title">Company Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+            <form class="form" name="form">
+                <div class="row">
+                <div class="col-12">
+            <div class="form-group">
+                <label for="location_name">Name:</label>
+                <input type="text" class="form-control" ng-model="CompanyLocationDetails.location_name" id="location_name"
+                    name="location_name" required>
+            </div>
+            </div>
+            <div class="col-12">
+            <div class="form-group">
+                <label for="address_line1">Address Line 1:</label>
+                <input type="text" class="form-control" ng-model="CompanyLocationDetails.address_line1" id="address_line1"
+                    name="address_line1" required>
+            </div>
+            </div>
+            <div class="col-12">
+            <div class="form-group">
+                <label for="address_line2">Address Line 2:</label>
+                <input type="text" class="form-control" ng-model="CompanyLocationDetails.address_line2" id="address_line2"
+                    name="address_line2" required>
+            </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+            <div class="form-group">
+                <label for="country">Country:</label>
+                <input type="text" class="form-control" ng-model="CompanyLocationDetails.country" id="country"
+                    name="country" required>
+            </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+            <div class="form-group">
+                <label for="state">State:</label>
+                <input type="text" class="form-control" ng-model="CompanyLocationDetails.state" id="state"
+                    name="state" required>
+            </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+            <div class="form-group">
+                <label for="city">City:</label>
+                <input type="text" class="form-control" ng-model="CompanyLocationDetails.city" id="city"
+                    name="city" required>
+            </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+            <div class="form-group">
+                <label for="pincode">Pin Code:</label>
+                <input type="text" class="form-control" ng-model="CompanyLocationDetails.pincode" id="pincode"
+                    name="pincode" required>
+            </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-6">
+            <div class="form-group">
+                <label for="landline">Landline No.:</label>
+                <input type="text" class="form-control" ng-model="CompanyLocationDetails.landlines" id="landline" name="landline" required>
+            </div>
+            </div>
+
+          
+            <div class="col-12 col-md-6 col-lg-6">
+            <div class="form-group">
+                <label for="mibile">Mobile No.:</label>
+                <input type="text" class="form-control" ng-model="CompanyLocationDetails.mobiles" id="mibile" name="mibile" required>
+            </div>
+            </div>
+
+            
+            <div class="col-12 col-sm-12 mt-2">
+               <div class="table-responsive"> 
+                   <table class="table table-bordered">
+                    <thead>
+                        <th colspan="3"><h6>Parking Capacity</h6></th>
+                        <th class="text-center text-primary"><i  role="button" ng-click="addEntryInCapacity()" class="fa fa-plus-square" aria-hidden="true"></i></th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#</td>
+                            <td>Vehical Type</td>
+                            <td></td>
+                            <td>Capacity</td>
+                            <td>Amount</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                    <tbody>
+                        <tr ng-repeat="_data in ParkingCapacity"> 
+                            <td>{{$index+1}}</td>
+                            <td><select class="form-select form-select-sm" ng-model="_data.vehicalType">
+                                <option value="" selected disabled>--Select--</option>
+                                <option value="car">Car</option>
+                                <option value="bike">Bike</option>
+                                <option value="rickshaw">Rickshaw</option>
+                                <option value="bus">Bus</option>
+                                <option value="truck">Truck</option>
+                                <option value="bycicle">Bycicle</option>
+                              </select></td>
+                              <td><img src="../icons/vehicle/{{_data.vehicalType}}.png" class="img-fluid"/></td>
+                            <td><input type="number" class="form-control form-control-sm" ng-model="_data.capacity"/></td>
+                            <td><input type="number" class="form-control form-control-sm" ng-model="_data.amount"/></td>
+                            <td class="text-center text-danger"><i role="button" ng-click="removeEntryInCapacity($index)" class="fa fa-minus-square" aria-hidden="true"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                   </table>
+               </div>
+            </div>
+
+
+         
+            <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                <label>Approval:</label>
+            <div class="form-group">
+                <div class="form-check-inline">
+                    <input type="radio" class="form-check-input" id="rd-approve" name="approval" value="0" ng-checked="CompanyLocationDetails.status == 0" ng-click="CompanyLocationDetails.status = 0">
+                    <label class="form-check-label" for="rd-approve">Approved</label>
+                  </div>
+                <div class="form-check-inline">
+                    <input type="radio" class="form-check-input" id="rd-denied" name="approval" value="1" ng-click="CompanyLocationDetails.status = 1" ng-checked="CompanyLocationDetails.status == 1">
+                    <label class="form-check-label" for="rd-denied">Denied</label>
+                  </div>
+            </div>
+            </div>
+         
+
+           
+            </div>
+        
+        </form>
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            <button type="button" class="btn btn-success" data-bs-dismiss="modal" ng-disabled="form.$invalid"
+            ng-click="saveCompanyLocations()">Save</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,122 @@
+<div ng-include="'/public/navabar.html'"></div>
+
+<div class="container-fluid my-5" ng-init="getLocationParkingCapacity()">
+    <div class="row py-5">
+        <div class="col-12 mt-1 mb-2">
+            <button class="btn btn-primary btn-sm" ng-click="parkingDetails = {}"  data-bs-toggle="modal" data-bs-target="#myModal">Add Entry</button>
+
+            <button class="btn btn-primary btn-sm" ng-if="selectedRecord.length > 0" ng-click="deleteParkingEntry()">Delete Entry</button>
+
+            <button class="btn btn-primary btn-sm" ng-if="selectedRecord.length > 0" ng-click="releaseVahical()">Release Vehical</button>
+        </div>
+
+        <div class="row mb-1">
+            
+           <!--  <div class=" col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+                <div class="form-group">
+                    <label for="vehical_type">Vehical Type:</label>
+                    <select class="form-select form-select-sm" id="vehical_type" name="vehical_type" ng-model="VehicalTypefilter.vehical_type" ng-options="_obj.vehicalType as _obj.vehicalType for _obj in parkingCapacity" ng-change="resetFilter(VehicalTypefilter.vehical_type, 'VehicalTypefilter')">
+                      <option value="">All</option>
+                    </select>
+                  </div>
+                  </div> -->
+            <div class=" col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+               
+                <div class="form-group">
+                    <div class="btn-group btn-group-sm mt-4">
+                        <button type="button" class="btn"  ng-class="{'btn-secondary':parkingPaymentfilter.payment_status == 1, 'btn-outline-secondary': (!parkingPaymentfilter.payment_status || parkingPaymentfilter.payment_status != 1)}"  ng-click="applyFiltersOnData('parkingPaymentfilter','payment_status', 1)">Paid</button>
+                        <button type="button" class="btn" ng-class="{'btn-secondary':parkingPaymentfilter.payment_status == 2, 'btn-outline-secondary': (!parkingPaymentfilter.payment_status || parkingPaymentfilter.payment_status != 2)}" ng-click="applyFiltersOnData('parkingPaymentfilter', 'payment_status', 2)">UnPaid</button>
+                      </div>
+                  </div>
+                  </div>
+                  <div class=" col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+                <div class="form-group">
+                    <label for="vehical_type">Date</label>
+                   <input type="date" class="form-control form-control-sm" ng-model="filter.bookingdate"/>
+                  </div>
+                  </div>
+                  <div class=" col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+                <div class="form-group">
+                    <label for="time_from">Time From</label>
+                    <input type="time" class="form-control form-control-sm" ng-model="filter.time_from" id="time_from" name="time_from">
+                  </div>
+                  </div>
+                  <div class=" col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+                <div class="form-group">
+                    <label for="time_to">Time To</label>
+                <input type="time" class="form-control form-control-sm" ng-model="filter.time_to" id="time_to" name="time_to">
+                  </div>
+                  </div>
+                  <div class=" col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+                <div class="form-group">
+                    <label for="search">Search</label>
+                <input type="text" class="form-control form-control-sm" ng-model="filter.search" id="search" name="search">
+                  </div>
+                  </div>
+                  <div class=" col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+                      
+                  </div>
+            
+        </div>
+
+        <div class="col-12 mt-1">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <td ng-repeat="_data in parkingCapacity" class="text-center" style="width:250px;" ng-class="{'bg-secondary': VehicalTypefilter.vehical_type == _data.vehicalType}" ng-click="applyFiltersOnData('VehicalTypefilter', 'vehical_type', _data.vehicalType)">
+                               <div class="col-12 card">
+                                   <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <img src="../icons/vehicle/{{_data.vehicalType}}.png" class="img-fluid"/>
+                                           </div>
+                                        <div class="col-sm-8">
+                                            <h5>{{_data.vehicalType | capitalize}} <br>{{reservedCount(dynamicArray(_data.vehicalType))}}/{{_data.capacity}}</h5>
+                                           </div>
+                                    </div>
+                                   
+                                  
+    
+                                   </div>
+                                    <div class="col-12 card-footer">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped" style="width:{{(reservedCount(dynamicArray(_data.vehicalType))/_data.capacity)*100}}%"></div>
+                                  </div>
+                               </div>
+                                  
+                               </div>
+                               
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        
+          <div class="col-12" ng-repeat="_data in parkingCapacity | filter: {vehicalType: VehicalTypefilter.vehical_type}">
+                <div class="container-fluid border border-2 p-3" >
+                    <div class="col-12"><h5>{{_data.vehicalType | capitalize}}</h5></div>
+                <div class="row">
+                    <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 border border-1 border-light col-xxl-1 mt-1" ng-repeat="_x in dynamicArray(_data.vehicalType) | filter: {payment_status: parkingPaymentfilter.payment_status} track by $index " ng-class="{'bg-secondary text-white':_x ==1}">
+                        <div class="card row" ng-class="{'bg-secondary text-white': _x.vehical_no.length > 0}" ng-click="getParkingDetails(_x)" data-bs-toggle="modal" data-bs-target="#myModal">
+                            <div class="card-body text-center">
+                                <img src="../icons/vehicle/{{_data.vehicalType}}.png" class="img-fluid"/>
+                            </div>
+                            <div class="text-center border-top border-2 h6" ng-class="{'text-warning':_x.payment_status == 2}">{{_x.vehical_no.length > 0 ?_x.vehical_no:'-------------' | startFrom:9}}</div>
+                          </div>
+                    </div>
+                    </div>
+                </div>
+          </div>
+
+            <div class="container" ng-if="!parkingCapacity || parkingCapacity.length <= 0">
+            <div class="col-12 col-sm-12 text-center alert alert-warning">
+                No record found!
+              </div>
+            </div>
+    </div>
+</div>
+
+<div ng-include="'../../templates/parking-details.html'"></div>

@@ -1,0 +1,88 @@
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h5 class="modal-title">Parking Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body" ng-init="getExistingVehicalsNumber()">
+        <form class="form" name="form">
+          <div class="row">
+            <div class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
+              <div class="form-group">
+                <label for="vehical_no">Vehical No.:</label>
+                <input type="text" class="form-control form-control-sm text-uppercase" ng-model="parkingDetails.vehical_no" id="vehical_no" name="vehical_no" uib-typeahead="_data as _data.vehical_no for _data in existingVehicalsList | filter:$viewValue" typeahead-on-select="getCustomerData(parkingDetails.vehical_no)" ng-disabled="parkingDetails.id">
+              </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
+              <div class="form-group">
+                <label for="vehical_type">Vehical Type:</label>
+                <select class="form-select form-select-sm" id="vehical_type" name="vehical_type" ng-model="parkingDetails.vehical_type" ng-options="_obj.vehicalType as _obj.vehicalType for _obj in parkingCapacity" ng-change="getParkringPrice()" ng-disabled="parkingDetails.id">
+                  <option value="" selected disabled>--Select--</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12 col-xl-12 col-sm-12">
+              <div class="form-group">
+                <label for="customer_name">Name:</label>
+                <input type="text" class="form-control form-control-sm" ng-model="parkingDetails.customer_name" id="customer_name" name="customer_name" ng-disabled="parkingDetails.id">
+              </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
+              <div class="form-group">
+                <label for="mobile">Mobile No.:</label>
+                <input type="number" class="form-control form-control-sm" ng-model="parkingDetails.mobile" id="mobile" name="mobile" ng-disabled="parkingDetails.id">
+              </div>
+            </div>
+           
+            <div class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
+              <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control form-control-sm" ng-model="parkingDetails.email" id="email" name="email" ng-disabled="parkingDetails.id">
+              </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12 col-xl-12 col-sm-12">
+              <hr >
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
+              <div class="form-group">
+                <label for="payment_status">Payment Status:</label>
+                <select class="form-select form-select-sm" id="payment_status" name="payment_status" ng-model="parkingDetails.payment_status" ng-options="_obj.ind as _obj.title for _obj in [{ind:1, title:'Paid'},{ind:2, title:'UnPaid'}]">
+                  <option value="" selected disabled>--Select--</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
+              <div class="form-group">
+                <label for="amount">Amount :</label>
+                <input type="number" class="form-control form-control-sm" ng-model="parkingDetails.amount" id="amount" name="amount" disabled>
+              </div>
+            </div>
+         
+            <div class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
+              <div class="form-group">
+                <label for="time_to">Time To :</label>
+                <input type="time" class="form-control form-control-sm" ng-model="parkingDetails.time_to" min="06:00" max="20:00" id="time_to" name="time_to" required>
+              </div>
+            </div>
+
+          </div>
+        </form>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+          ng-click="saveParkingAllocationDetails()">Save</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>

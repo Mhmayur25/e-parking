@@ -1,0 +1,41 @@
+{
+  "name": "e-parking",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mhmayur25/e-parking.git"
+  },
+  "author": "Mayur P. Mhatre",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mhmayur25/e-parking/issues"
+  },
+  "homepage": "https://github.com/Mhmayur25/e-parking#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "bower": "^1.8.14",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "express": "^4.17.3",
+    "fcm-node": "^1.6.1",
+    "html-pdf": "^3.0.1",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.2",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.4",
+    "mysql": "^2.18.1",
+    "mysql-model": "0.0.3",
+    "node-gcm": "^1.0.5",
+    "nodemailer": "^6.7.3",
+    "phantomjs": "^2.1.7",
+    "phantomjs-prebuilt": "^2.1.16",
+    "socketio": "^1.0.0",
+    "tailwindcss": "^3.0.23"
+  }
+}

@@ -1,0 +1,55 @@
+<div class="row">
+    <div class="col-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3 my-1 mb-1 position-relative"><input type="text"
+            class="form-control form-control-sm" placeholder="Search" ng-model="filter.search"> <i ng-if="filter.search.length > 0" ng-click="filter.search = undefined" role="button" class="fa fa-times-circle position-absolute insde-field" aria-hidden="true"></i>
+        </div>
+    <div class="col-4 col-sm-4 col-md-3 col-lg-3 col-xl-3 col-xxl-3 my-1 mb-1"><select
+            class="form-control form-control-sm" ng-model="pageLimit" ng-change="getTotagePages()"
+            ng-options="_limit for _limit in [5, 10, 25, 50, 100]">
+            <option selected disabled value="">List Size</option>
+        </select></div>
+    <div class="col-8 col-md-3 col-sm-8 col-lg-6 col-xl-6 col-xxl-6 text-end text-nowrap float-end my-1 mb-1">
+        <div class="btn-group btn-group-sm"> <button type="button" class="btn btn-outline-light text-dark btn-sm"
+                ng-click="jumpTuFirstPage()" ng-disabled="selectedPage == 1"><i class="fa fa-angle-double-left"
+                    aria-hidden="true"></i></button> <button type="button"
+                class="btn btn-outline-light text-dark btn-sm" ng-click="previousPage()"
+                ng-disabled="selectedPage == 1"><i class="fa fa-angle-left" aria-hidden="true"></i></button> <button
+                type="button" class="btn btn-outline-light text-dark btn-sm"><strong role="button"
+                    data-bs-toggle="popover" data-bs-content-id="popover-content"
+                    ng-click="jumpedPage = undefined;">Page {{selectedPage}} of {{NumOfPages}} </strong></button>
+            <button type="button" class="btn btn-outline-light text-dark btn-sm" ng-click="nextPage()"
+                ng-disabled="selectedPage >= NumOfPages"><i class="fa fa-angle-right" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-outline-light text-dark btn-sm" ng-click="jumpToLastPage()"
+                ng-disabled="selectedPage >= NumOfPages"><i class="fa fa-angle-double-right"
+                    aria-hidden="true"></i></button> </div>
+    </div>
+</div>
+<div class="row">
+    <div class="table-responsive">
+        <table class="table table-bordered table-strpped">
+            <thead>
+                <th></th>
+                <th ng-repeat="_h in tableData.headers" class="position-relative" role="button" ng-click="RecordOrderedBy(_h, $index)">{{_h.title}} 
+                    <svg version="1.0"  id="sort-crets" class="position-absolute end-0" xmlns="http://www.w3.org/2000/svg"
+                    width="20.000000pt" height="20.000000pt" viewBox="0 0 24.000000 24.000000"
+                    preserveAspectRatio="xMidYMid meet">
+                   
+                   <g transform="translate(0.000000,24.000000) scale(0.100000,-0.100000)"
+                    stroke="none">
+                   <path d="M72 197 c-23 -24 -39 -46 -36 -50 9 -9 159 -9 168 0 6 6 -72 93 -84
+                   93 -3 0 -25 -19 -48 -43z" ng-class="{'sort-desc' : ((orderDesc == true && $index == clickedIndex)), 'sort': !((orderDesc == true && $index == clickedIndex))}"/>
+                   <path d="M36 92 c-3 -5 15 -28 39 -52 l45 -44 45 44 c24 24 42 47 39 52 -7 11
+                   -161 11 -168 0z" ng-class="{'sort-asc': (orderAsc == true && $index == clickedIndex),  'sort': !(orderAsc == true && $index == clickedIndex)}"/>
+                   </g>
+                   </svg></th>
+            </thead>
+            <tbody>
+                <tr
+                    ng-repeat="_c in tableData.data | filter: filter.search | startFrom : startFrom | limitTo : pageLimit">
+                    <td> <input class="form-check-input" type="checkbox" ng-model="_c.bool"
+                            ng-click="_c.bool = !_c.bool;selectRow({data:_c})"></td>
+                    <td ng-repeat="_h in tableData.headers">{{_c[_h.field]}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

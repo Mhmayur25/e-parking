@@ -1,0 +1,24 @@
+[
+    {
+        "Query":"CREATE TABLE IF NOT EXISTS `company` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(1000) NULL, `owner` VARCHAR(1000) NULL, `logo` VARCHAR(1000) NULL , `description` VARCHAR(5000) NULL, `landline` BIGINT NULL , `altlandline` BIGINT NULL ,  `mobile` BIGINT NULL , `altmobile` BIGINT NULL , `email` VARCHAR(1000) NULL , `website` VARCHAR(1000) NULL , `gstin` VARCHAR(1000) NULL, `status` INT NOT NULL DEFAULT '0' ,`createddate` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `createdby` INT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;"
+    },
+    {
+        "Query":"CREATE TABLE IF NOT EXISTS `company_locations` ( `id` INT NOT NULL AUTO_INCREMENT, `companyid` INT NULL ,`location_name` VARCHAR(1000) NULL,`address_line1` VARCHAR(1000) NULL, `address_line2` VARCHAR(1000) NULL, `city` VARCHAR(100) NULL, `state` VARCHAR(100) NULL, `country` VARCHAR(100) NULL, `pincode` VARCHAR(10) NULL, `landlines` VARCHAR(1000) NULL, `mobiles` VARCHAR(1000) NULL,`parking_capacity` VARCHAR(1000) NULL, `status` INT NOT NULL DEFAULT '0' , `createddate` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `createdby` INT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;"
+    },
+    {
+        "Query":"CREATE TABLE IF NOT EXISTS `vehical_types` ( `id` INT NOT NULL AUTO_INCREMENT, `type`  VARCHAR(100) NULL,`icon` VARCHAR(300) NULL, `status` INT NOT NULL DEFAULT '0' , `createddate` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `createdby` INT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;"
+    },
+   
+    {
+        "Query":"CREATE TABLE IF NOT EXISTS `customers` ( `id` INT NOT NULL AUTO_INCREMENT, `companyid` INT NULL , `locationid` INT NULL , `vehical_type` VARCHAR(10) NULL ,`customer_name` VARCHAR(300) NULL, `mobile` BIGINT NULL, `email` VARCHAR(500) NULL, `vehical_no` VARCHAR(100) NULL, `time_from` DATETIME NULL, `time_to` DATETIME NULL, `status` INT NOT NULL DEFAULT '0' , `createddate` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `createdby` INT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;"
+    },
+    {
+        "Query":"CREATE TABLE IF NOT EXISTS `customer_subscription` ( `id` INT NOT NULL AUTO_INCREMENT, `customer_id` INT NULL , `sub_amount` FLOAT NULL ,`sub_period` VARCHAR(100) NULL, `sub_start_date` DATETIME NULL, `sub_end_date` DATETIME NULL,  `status` INT NOT NULL DEFAULT '0' , `createddate` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `createdby` INT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;"
+    },
+    {
+        "Query":"CREATE TABLE IF NOT EXISTS `users` ( `id` INT NOT NULL AUTO_INCREMENT, `companyid` INT NULL , `locationid` INT NULL , `name` VARCHAR(300) NULL, `mobile` BIGINT NULL, `email` VARCHAR(500) NULL, `password` VARCHAR(1000) NULL, `role` VARCHAR(50) NULL, `status` INT NOT NULL DEFAULT '0' , `createddate` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `createdby` INT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;ALTER TABLE `users` ADD IF NOT EXISTS `firstlogin` INT NULL DEFAULT NULL AFTER `password`;INSERT INTO `users` (`name`,`email`,`mobile`,`role`,`password`) SELECT * FROM (SELECT 'Mayur Mhatre', 'mhatre975@gmail.com', 9768241151,'Superadmin','d77655d0f9bea972c3dc173bfb0446f4') AS tmp WHERE NOT EXISTS (SELECT name FROM `users` WHERE `email` = 'mhatre975@gmail.com' AND `mobile` = 9768241151) LIMIT 1;"
+    },
+    {
+        "Query":"CREATE TABLE IF NOT EXISTS `daily_parking_allocation` ( `id` INT NOT NULL AUTO_INCREMENT, `companyid` INT NULL , `locationid` INT NULL , `customer_id` INT NULL, `allocation_status` INT NULL, `time_from` DATETIME NULL, `time_to` DATETIME NULL, `payment_status` INT NULL, `amount` FLOAT NULL, `status` INT NOT NULL DEFAULT '0' , `createddate` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `createdby` INT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;"
+    }
+]

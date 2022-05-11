@@ -1,0 +1,23 @@
+<div ng-include="'/public/navabar.html'"></div>
+
+<div class="container-fluid my-5" ng-init="getUsersList()">
+    <div class="row py-5">
+        <div class="col-12 mt-1 mb-2">
+            <button class="btn btn-primary btn-sm" ng-click="userDetails = {}"  data-bs-toggle="modal" data-bs-target="#myModal">Add User</button>
+
+            <button class="btn btn-primary btn-sm" ng-if="selectedRecord.length == 1" data-bs-toggle="modal" ng-click="getUserDetails(selectedRecord[0])" data-bs-target="#myModal">Edit User</button>
+
+            <button class="btn btn-primary btn-sm" ng-if="selectedRecord.length > 0" ng-click="deleteUsers()">Delete User</button>
+        </div>
+
+            <ln-table ng-if="UsersList && UsersList.length > 0" name="tableData" select-row="selectRow(data)"></ln-table>
+
+            <div class="container" ng-if="!UsersList || UsersList.length <= 0">
+            <div class="col-12 col-sm-12 text-center alert alert-warning">
+                No record found!
+              </div>
+            </div>
+    </div>
+</div>
+
+<div ng-include="'../../templates/user-details.html'"></div>
